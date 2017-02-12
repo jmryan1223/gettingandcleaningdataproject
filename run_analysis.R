@@ -3,18 +3,17 @@ install.packages("reshape2")
 require("data.table")
 require("reshape2")
 
-# Reads in table "activity label"
+
 activity_labels <- read.table("./UCI HAR Dataset/activity_labels.txt")[,2]
-features <- read.table("./UCI HAR Dataset/features.txt")[,2]
-
+feat <- read.table("./UCI HAR Dataset/features.txt")[,2]
 # Mean/stddev
-extract_features <- grepl("mean|std", features)
+extract_features <- grepl("mean|std", feat)
 
-# Processes the test data
+# Processes the test dataset
 Xtest <- read.table("./UCI HAR Dataset/test/X_test.txt")
 ytest <- read.table("./UCI HAR Dataset/test/y_test.txt")
 subject_test <- read.table("./UCI HAR Dataset/test/subject_test.txt")
-names(Xtest) = features
+names(Xtest) = feat
 
 # Extract only the measurements on the mean and standard deviation for each measurement.
 Xtest = Xtest[,extract_features]
@@ -33,9 +32,9 @@ ytrain <- read.table("./UCI HAR Dataset/train/y_train.txt")
 
 subject_train <- read.table("./UCI HAR Dataset/train/subject_train.txt")
 
-names(Xtrain) = features
+names(Xtrain) = feat
 
-# Extract only the measurements on the mean and standard deviation for each measurement.
+
 Xtrain = Xtrain[,extract_features]
 
 
